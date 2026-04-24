@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   </head>
-  <body>
+  <body data-ai-enabled="{{ 'true' if ai_enabled else 'false' }}">
     <div class="app-shell">
       <aside class="sidebar">
         <header class="brand-row">
@@ -28,8 +28,80 @@
         <button id="locateButton" class="primary-action" type="button">Use my location</button>
         <p id="locationStatus" class="status-text">Location is requested only after login.</p>
 
-        <section class="report-form">
-          <h2>Add a pin</h2>
+        <section class="controls-panel">
+          <div class="toolbar-head">
+            <label class="search-field">
+              Search
+              <input id="searchInput" type="search" placeholder="Search visible events">
+            </label>
+            <details class="filters-menu">
+              <summary>Filters</summary>
+              <div class="filters-drawer">
+                <label>
+                  Time window
+                  <select id="windowSelect">
+                    <option value="today">Today</option>
+                    <option value="week" selected>This week</option>
+                    <option value="two_weeks">Past two weeks</option>
+                    <option value="month">Past month</option>
+                  </select>
+                </label>
+                <label>
+                  Category
+                  <select id="categoryFilter">
+                    <option value="">All categories</option>
+                    {% for category in categories %}
+                    <option value="{{ category }}">{{ category }}</option>
+                    {% endfor %}
+                  </select>
+                </label>
+              </div>
+            </details>
+          </div>
+          <p id="activeFilters" class="status-text">Showing events from this week across all categories.</p>
+          <section class="summary-panel">
+            <div class="summary-head">
+              <div>
+                <p class="eyebrow">Campus summary</p>
+                <h2>What the visible map is saying</h2>
+              </div>
+              <button id="summaryButton" class="secondary-action" type="button" {% if not ai_enabled %}disabled{% endif %}>
+                Refresh summary
+              </button>
+            </div>
+            <p id="summaryStatus" class="status-text">
+              {% if ai_enabled %}
+              The summary only uses events visible under your current filters.
+              {% else %}
+              AI summaries turn on when `OPENAI_API_KEY` is configured.
+              {% endif %}
+            </p>
+            <div id="summaryOutput" class="summary-output">No campus summary generated yet.</div>
+          </section>
+          <div class="merge-toolbar">
+            <button id="mergeButton" class="secondary-action" type="button" disabled>Merge selected</button>
+            <button id="clearMergeButton" class="ghost-action" type="button" disabled>Clear</button>
+          </div>
+          <p id="mergeStatus" class="status-text">Showing events from this week. Select two cards to merge duplicates.</p>
+        </section>
+
+        <section class="feed">
+          <h2>Campus events</h2>
+          <div id="feedItems"></div>
+        </section>
+      </aside>
+      <main class="map-area">
+        <div class="map-callout">
+          Click anywhere on the map to add a pin.
+        </div>
+        <section id="pinPanel" class="pin-panel hidden" aria-live="polite">
+          <div class="pin-panel-head">
+            <div>
+              <p class="eyebrow">New event</p>
+              <h2>Add a pin</h2>
+            </div>
+            <button id="closePinPanel" class="ghost-action" type="button">Close</button>
+          </div>
           <form id="reportForm">
             <label>
               Category
@@ -58,19 +130,22 @@
               Details
               <textarea name="description" maxlength="600" rows="4" placeholder="What should other students know?" required></textarea>
             </label>
+            <label>
+              Picture
+              <input id="imageInput" type="file" accept="image/*">
+            </label>
+            <div id="imagePreviewWrap" class="image-preview hidden">
+              <img id="imagePreview" alt="Selected event preview">
+              <button id="clearImageButton" class="ghost-action" type="button">Remove picture</button>
+            </div>
             <input type="hidden" name="lat">
             <input type="hidden" name="lng">
             <button type="submit">Pin selected location</button>
           </form>
-          <p id="pinStatus" class="status-text">Click the map to choose where the pin should go.</p>
+          <p id="pinStatus" class="status-text">
+            Click the map to choose where the pin should go.
+          </p>
         </section>
-
-        <section class="feed">
-          <h2>Recent reports</h2>
-          <div id="feedItems"></div>
-        </section>
-      </aside>
-      <main class="map-area">
         <div id="map" data-lat="{{ center.lat }}" data-lng="{{ center.lng }}"></div>
       </main>
     </div>

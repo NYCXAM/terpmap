@@ -16,26 +16,28 @@ A Python/Flask campus incident map where signed-in students can pin campus event
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+cp .env.example .env
 python app.py
 ```
 
-Open `http://127.0.0.1:5000`.
+Open `http://127.0.0.1:5050` (or set `PORT` to use another port).
 
 ## Google OAuth
 
 Create an OAuth client in Google Cloud Console and add this redirect URI:
 
 ```text
-http://127.0.0.1:5000/auth/google/callback
+http://127.0.0.1:5050/auth/google/callback
 ```
 
-Then run:
+Then put your credentials in `.env`:
 
-```bash
-export GOOGLE_CLIENT_ID="your-client-id"
-export GOOGLE_CLIENT_SECRET="your-client-secret"
-export SECRET_KEY="a-long-random-secret"
-python app.py
+```text
+SECRET_KEY="a-long-random-secret"
+GOOGLE_CLIENT_ID="your-client-id"
+GOOGLE_CLIENT_SECRET="your-client-secret"
+OPENAI_API_KEY="your-openai-api-key"
+OPENAI_MODEL="gpt-4.1-mini"
 ```
 
 Real UMD SSO normally requires an institution-issued SAML/OIDC/CAS client. This app includes an `@umd.edu` email-code login flow so UMD account behavior can be tested locally without storing passwords.
