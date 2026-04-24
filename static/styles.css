@@ -1,0 +1,336 @@
+:root {
+  color-scheme: light;
+  --ink: #171717;
+  --muted: #646464;
+  --line: #d8d2c3;
+  --paper: #f7f4ec;
+  --panel: #ffffff;
+  --red: #c8102e;
+  --gold: #ffd200;
+  --green: #1d7f63;
+  --shadow: 0 16px 42px rgba(23, 23, 23, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+.primary-action {
+  border: 0;
+  border-radius: 8px;
+  background: var(--red);
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  min-height: 42px;
+  padding: 0 16px;
+  text-decoration: none;
+}
+
+button:hover,
+.primary-action:hover {
+  filter: brightness(0.95);
+}
+
+.primary-action {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.primary-action.disabled {
+  opacity: 0.55;
+}
+
+.login-page {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.24)),
+    url("https://upload.wikimedia.org/wikipedia/commons/7/74/McKeldin_Mall%2C_University_of_Maryland.jpg") center / cover;
+}
+
+.login-shell {
+  align-items: center;
+  display: flex;
+  min-height: 100%;
+  padding: 32px;
+}
+
+.login-panel {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  max-width: 440px;
+  padding: 28px;
+  width: 100%;
+}
+
+.eyebrow {
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+  margin: 0 0 6px;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 34px;
+  line-height: 1.05;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 17px;
+  margin-bottom: 12px;
+}
+
+.lede {
+  color: var(--muted);
+  line-height: 1.45;
+  margin-bottom: 22px;
+}
+
+.notice {
+  background: #fff6cf;
+  border: 1px solid #efd46c;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  padding: 10px 12px;
+}
+
+.notice p {
+  margin: 0;
+}
+
+.divider {
+  align-items: center;
+  color: var(--muted);
+  display: flex;
+  font-size: 13px;
+  gap: 12px;
+  margin: 22px 0;
+}
+
+.divider::before,
+.divider::after {
+  background: var(--line);
+  content: "";
+  flex: 1;
+  height: 1px;
+}
+
+.stacked-form {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.inline-form {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 1fr auto;
+}
+
+label {
+  color: #333;
+  display: grid;
+  font-size: 13px;
+  font-weight: 700;
+  gap: 6px;
+}
+
+input,
+select,
+textarea {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  min-height: 42px;
+  padding: 10px 12px;
+  width: 100%;
+}
+
+textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  background: var(--panel);
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: auto;
+  padding: 20px;
+  z-index: 10;
+}
+
+.brand-row {
+  align-items: start;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand-row h1 {
+  font-size: 28px;
+}
+
+.icon-button {
+  background: #171717;
+  min-height: 36px;
+  padding: 0 12px;
+}
+
+.user-strip {
+  background: #f7f4ec;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+}
+
+.user-strip span {
+  font-weight: 800;
+}
+
+.user-strip small,
+.status-text {
+  color: var(--muted);
+}
+
+.status-text {
+  font-size: 13px;
+  line-height: 1.35;
+  margin: -8px 0 0;
+}
+
+.report-form,
+.feed {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+#reportForm {
+  display: grid;
+  gap: 12px;
+}
+
+.map-area,
+#map {
+  min-height: 100%;
+}
+
+.selected-pin {
+  background: var(--gold);
+  border: 3px solid #171717;
+  border-radius: 999px;
+  height: 18px;
+  width: 18px;
+}
+
+.feed {
+  display: grid;
+  gap: 10px;
+}
+
+#feedItems {
+  display: grid;
+  gap: 10px;
+}
+
+.feed-card {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--red);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.feed-card h3 {
+  font-size: 15px;
+  margin: 0 0 6px;
+}
+
+.feed-card p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+
+.feed-meta {
+  color: #333;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 12px;
+  gap: 8px;
+}
+
+.leaflet-popup-content {
+  line-height: 1.35;
+}
+
+@media (max-width: 820px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: 48vh 52vh;
+  }
+
+  .sidebar {
+    border-right: 0;
+    border-top: 1px solid var(--line);
+    grid-row: 2;
+    padding: 16px;
+  }
+
+  .map-area {
+    grid-row: 1;
+  }
+
+  .login-shell {
+    align-items: end;
+    padding: 16px;
+  }
+
+  .inline-form {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UMD Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <header class="brand-row">
+          <div>
+            <p class="eyebrow">Live campus layer</p>
+            <h1>UMD Map</h1>
+          </div>
+          <form method="post" action="{{ url_for('logout') }}">
+            <button class="icon-button" type="submit" title="Sign out">Exit</button>
+          </form>
+        </header>
+
+        <div class="user-strip">
+          <span>{{ user["name"] }}</span>
+          <small>{{ user["email"] }}</small>
+        </div>
+
+        <button id="locateButton" class="primary-action" type="button">Use my location</button>
+        <p id="locationStatus" class="status-text">Location is requested only after login.</p>
+
+        <section class="report-form">
+          <h2>Add a pin</h2>
+          <form id="reportForm">
+            <label>
+              Category
+              <select name="category" required>
+                <option>Traffic accident</option>
+                <option>Road closure</option>
+                <option>Safety alert</option>
+                <option>Campus event</option>
+                <option>Construction</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>
+              Severity
+              <select name="severity" required>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+              </select>
+            </label>
+            <label>
+              Title
+              <input name="title" maxlength="80" placeholder="Brief report title" required>
+            </label>
+            <label>
+              Details
+              <textarea name="description" maxlength="600" rows="4" placeholder="What should other students know?" required></textarea>
+            </label>
+            <input type="hidden" name="lat">
+            <input type="hidden" name="lng">
+            <button type="submit">Pin selected location</button>
+          </form>
+          <p id="pinStatus" class="status-text">Click the map to choose where the pin should go.</p>
+        </section>
+
+        <section class="feed">
+          <h2>Recent reports</h2>
+          <div id="feedItems"></div>
+        </section>
+      </aside>
+      <main class="map-area">
+        <div id="map" data-lat="{{ center.lat }}" data-lng="{{ center.lng }}"></div>
+      </main>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

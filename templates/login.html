@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UMD Map Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body class="login-page">
+    <main class="login-shell">
+      <section class="login-panel">
+        <p class="eyebrow">University of Maryland</p>
+        <h1>UMD Map</h1>
+        <p class="lede">Campus reports from students, pinned where they happen.</p>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="notice">
+              {% for message in messages %}
+                <p>{{ message }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <a class="primary-action {{ '' if google_enabled else 'disabled' }}" href="{{ url_for('google_auth') }}">
+          Continue with Google
+        </a>
+
+        <div class="divider"><span>or use UMD email</span></div>
+
+        <form class="stacked-form" method="post" action="{{ url_for('umd_request_code') }}">
+          <label for="request-email">UMD email</label>
+          <div class="inline-form">
+            <input id="request-email" name="email" type="email" placeholder="directoryid@umd.edu" required>
+            <button type="submit">Get code</button>
+          </div>
+        </form>
+
+        <form class="stacked-form" method="post" action="{{ url_for('umd_verify_code') }}">
+          <label for="verify-email">Verification</label>
+          <input id="verify-email" name="email" type="email" placeholder="directoryid@umd.edu" required>
+          <input name="code" inputmode="numeric" pattern="[0-9]{6}" placeholder="6-digit code" required>
+          <button type="submit">Sign in</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
