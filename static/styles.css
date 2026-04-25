@@ -84,25 +84,134 @@ button:hover,
 
 .login-page {
   background:
-    linear-gradient(rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.24)),
+    linear-gradient(115deg, rgba(45, 18, 10, 0.74), rgba(45, 18, 10, 0.32)),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.28)),
     url("https://upload.wikimedia.org/wikipedia/commons/7/74/McKeldin_Mall%2C_University_of_Maryland.jpg") center / cover;
 }
 
 .login-shell {
   align-items: center;
-  display: flex;
+  display: grid;
+  gap: 28px;
+  grid-template-columns: minmax(0, 1.1fr) minmax(360px, 440px);
   min-height: 100%;
-  padding: 32px;
+  padding: 40px;
+}
+
+.login-stage {
+  display: grid;
+  gap: 24px;
+  max-width: 720px;
+}
+
+.login-copy {
+  color: white;
+  display: grid;
+  gap: 16px;
+}
+
+.login-copy .eyebrow {
+  color: #ffd86a;
+}
+
+.login-copy h1 {
+  font-size: clamp(48px, 7vw, 88px);
+  line-height: 0.95;
+  margin-bottom: 0;
+  max-width: 8ch;
+}
+
+.login-lead {
+  color: rgba(255, 245, 240, 0.92);
+  font-size: 19px;
+  line-height: 1.5;
+  margin-bottom: 0;
+  max-width: 34ch;
+}
+
+.login-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.login-badge {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 14px;
+}
+
+.login-preview {
+  max-width: 560px;
+}
+
+.preview-card {
+  backdrop-filter: blur(10px);
+  background: rgba(34, 16, 12, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.18);
+  color: white;
+  padding: 22px;
+}
+
+.preview-kicker {
+  color: #ffd86a;
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.preview-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.preview-grid article {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  display: grid;
+  gap: 6px;
+  min-height: 112px;
+  padding: 14px;
+}
+
+.preview-grid strong {
+  font-size: 15px;
+}
+
+.preview-grid span {
+  color: rgba(255, 241, 236, 0.86);
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .login-panel {
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  background: rgba(255, 250, 245, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.56);
   border-radius: 8px;
-  box-shadow: var(--shadow);
-  max-width: 440px;
-  padding: 28px;
+  box-shadow: 0 18px 60px rgba(35, 14, 10, 0.16);
+  padding: 30px;
   width: 100%;
+}
+
+.login-panel-head {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.login-panel-head h2 {
+  font-size: 30px;
+  margin-bottom: 2px;
 }
 
 .eyebrow {
@@ -678,7 +787,30 @@ textarea {
 
   .login-shell {
     align-items: end;
+    gap: 18px;
+    grid-template-columns: 1fr;
     padding: 16px;
+  }
+
+  .login-stage {
+    gap: 16px;
+  }
+
+  .login-copy h1 {
+    font-size: 48px;
+    max-width: 10ch;
+  }
+
+  .login-lead {
+    font-size: 16px;
+  }
+
+  .preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .login-panel {
+    padding: 22px;
   }
 
   .inline-form {

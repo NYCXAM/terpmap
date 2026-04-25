@@ -756,7 +756,7 @@ def umd_request_code():
     session["umd_email"] = email
     session["umd_code"] = code
     session["umd_code_expires"] = int(time.time()) + 600
-    print(f"[UMD Map] Verification code for {email}: {code}", flush=True)
+    print(f"[TerpMap] Verification code for {email}: {code}", flush=True)
     flash("Verification code generated. Check the Flask server console.")
     return redirect(url_for("login"))
 

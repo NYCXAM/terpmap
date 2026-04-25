@@ -1,4 +1,4 @@
-# UMD Map
+# TerpMap
 
 A Python/Flask campus incident map where signed-in students can pin campus events such as traffic accidents, hazards, closures, activities, and safety notices.
 

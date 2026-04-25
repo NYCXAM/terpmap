@@ -3,15 +3,53 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>UMD Map Login</title>
+    <title>TerpMap Login</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   </head>
   <body class="login-page">
     <main class="login-shell">
+      <section class="login-stage">
+        <div class="login-copy">
+          <p class="eyebrow">University of Maryland</p>
+          <h1>TerpMap</h1>
+          <p class="login-lead">One live campus layer for road closures, safety notices, parking disruptions, and student-reported events.</p>
+          <div class="login-badge-row">
+            <span class="login-badge">Pinned where it happens</span>
+            <span class="login-badge">Student updates</span>
+            <span class="login-badge">Campus-wide summaries</span>
+          </div>
+        </div>
+        <div class="login-preview">
+          <div class="preview-card">
+            <p class="preview-kicker">Active campus pulse</p>
+            <div class="preview-grid">
+              <article>
+                <strong>Traffic</strong>
+                <span>Spot closures before they slow down your route.</span>
+              </article>
+              <article>
+                <strong>Parking</strong>
+                <span>Catch lot disruptions without chasing group chats.</span>
+              </article>
+              <article>
+                <strong>Events</strong>
+                <span>See what is happening nearby in one shared view.</span>
+              </article>
+              <article>
+                <strong>Safety</strong>
+                <span>Check the latest student-reported activity around campus.</span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="login-panel">
-        <p class="eyebrow">University of Maryland</p>
-        <h1>UMD Map</h1>
-        <p class="lede">Campus reports from students, pinned where they happen.</p>
+        <div class="login-panel-head">
+          <p class="eyebrow">Sign In</p>
+          <h2>Join the campus map</h2>
+          <p class="lede">Use your UMD email or Google account to view and pin reports.</p>
+        </div>
 
         {% with messages = get_flashed_messages() %}
           {% if messages %}
